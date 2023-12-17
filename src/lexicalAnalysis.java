@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class lexicalAnalysis {
-    private String output;
+    private String output = "";
     private String dataType;
     private String value;
+    private String input1 = "";
 
     public String lexicalAnalysis(String input) {
+        input = input.replace(";", " ;");
 
         HashMap<String, String> tokenMap = new HashMap<>();
 
@@ -36,8 +37,9 @@ public class lexicalAnalysis {
         tokenMap.put(";", "DELIMITER");
 
         ArrayList<String> splitInput = tokenize(input);
-        List<String> outputList = new ArrayList<String>();
+        ArrayList<String> outputList = new ArrayList<>();
         for (String lex : splitInput) {
+
             String tokenType = tokenMap.get(lex);
 
             if (tokenType != null) {
@@ -56,22 +58,19 @@ public class lexicalAnalysis {
                         return ("Error!");
                 }
             } else {
-                //identifier
                 if (isIdentifier(lex)) {
                     outputList.add("<identifier>");
-                }
-                //value
-                else if (lex.matches("[0-9]+") || lex.startsWith("\"") && lex.endsWith("\"")) {
+                } else if (lex.matches("[0-9]+") || lex.startsWith("\"") && lex.endsWith("\"")) {
                     outputList.add("<value>");
                     this.value = lex;
                 }
             }
         }
-        for (String hold : outputList)
-        {
+
+        for (String hold : outputList) {
             output += hold;
         }
-        return output;
+        return "Result: "+output;
     }
 
 
@@ -81,6 +80,12 @@ public class lexicalAnalysis {
 
         // Check if the lexeme matches the pattern
         return lexeme.matches(identifierPattern);
+    }
+    public String getDataType(){
+        return dataType;
+    }
+    public String getValue(){
+        return value;
     }
 
     public static ArrayList<String> tokenize(String input) {

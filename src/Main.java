@@ -17,7 +17,11 @@ public class Main extends JFrame {
     private File file;
     private String contents;
     private lexicalAnalysis lexicalAnalysis;
-    private String lexOutput;
+    private syntaxAnalysis syntaxAnalysis;
+    private semanticAnalysis semanticAnalysis;
+    private String lexOutput = "";
+    private String synOutput = "";
+    private String semOutput = "";
 
 
     public Main() {
@@ -28,6 +32,7 @@ public class Main extends JFrame {
         clearButton.setEnabled(false);
         srcText.setFocusable(false);
         resultTextField.setFocusable(false);
+
 
         openFileButton.addActionListener(new ActionListener() {
             @Override
@@ -54,11 +59,41 @@ public class Main extends JFrame {
                 lexicalAnalysis = new lexicalAnalysis();
                 lexOutput = lexicalAnalysis.lexicalAnalysis(contents);
                 resultTextField.setText(lexOutput);
-
+                lexicalAnalysisButton.setEnabled(false);
+                syntaxAnalysisButton.setEnabled(true);
 
             }
         });
 
+        syntaxAnalysisButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                syntaxAnalysis = new syntaxAnalysis();
+                synOutput = syntaxAnalysis.syntaxAnalysis(lexOutput);
+                resultTextField.setText(synOutput);
+                lexicalAnalysisButton.setEnabled(false);
+                syntaxAnalysisButton.setEnabled(false);
+                semanticAnalysisButton.setEnabled(true);
+
+            }
+        });
+        semanticAnalysisButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                semanticAnalysis = new semanticAnalysis();
+                semOutput = semanticAnalysis.semanticAnalysis(lexicalAnalysis.getDataType(), lexicalAnalysis.getValue());
+                resultTextField.setText(semOutput);
+                syntaxAnalysisButton.setEnabled(false);
+                semanticAnalysisButton.setEnabled(false);
+            }
+        });
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resultTextField.setText("Result: ");
+                srcText.setText("");
+            }
+        });
     }
 
     public static void main(String[] args) {
