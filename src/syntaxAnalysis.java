@@ -7,9 +7,9 @@ public class syntaxAnalysis {
             output += in + ">";
         }
         if (output.equals("<data_type><identifier><delimiter>") || output.equals("<data_type><identifier><assignment_operator><value><delimiter>")) {
-            return "Result: Syntax is Correct!";
+            return "Syntax is Correct!";
         } else {
-            return "Result: Syntax is Incorrect!";
+            return "Syntax is Incorrect!";
         }
 
     }

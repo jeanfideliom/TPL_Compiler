@@ -55,7 +55,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value=""/>
+          <text value="Code Text Area"/>
         </properties>
       </component>
       <component id="accd0" class="javax.swing.JLabel">
@@ -82,7 +82,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value="Result: "/>
+          <text value="Result Area"/>
         </properties>
       </component>
     </children>

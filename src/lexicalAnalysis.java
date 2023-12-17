@@ -70,7 +70,7 @@ public class lexicalAnalysis {
         for (String hold : outputList) {
             output += hold;
         }
-        return "Result: "+output;
+        return output;
     }
 
 

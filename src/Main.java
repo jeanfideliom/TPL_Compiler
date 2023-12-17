@@ -90,7 +90,7 @@ public class Main extends JFrame {
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                resultTextField.setText("Result: ");
+                resultTextField.setText("");
                 srcText.setText("");
             }
         });
